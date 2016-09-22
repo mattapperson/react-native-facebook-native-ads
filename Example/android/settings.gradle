@@ -1,0 +1,3 @@
+rootProject.name = 'ExampleNativeAd'
+
+include ':app'
