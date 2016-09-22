@@ -5,6 +5,10 @@ First off, this is iOS only for now. PRs are welcome to add Android support
 
 `$ npm install react-native-facebook-native-ads --save`
 
+Then download the Facebook SDK and place the `FBAudienceNetwork.framework` file in your projects `/ios` directory.
+Add then add the framework to your apps frameworks in xcode.
+You could alternatively install the FB SDK using cocoapods...
+
 ### Mostly automatic installation
 
 `$ react-native link react-native-facebook-native-ads`
