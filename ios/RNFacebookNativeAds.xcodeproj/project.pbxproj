@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B3E7B58A1CC2AC0600A0062D /* RNFacebookNativeAds.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNFacebookNativeAds.m */; };
-		D95FDDFB1D9190180003B4E1 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95FDDFA1D9190180003B4E1 /* FBAudienceNetwork.framework */; };
+		D95FDE241D91ACB60003B4E1 /* RCTFBNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FDE231D91ACB60003B4E1 /* RCTFBNativeAdView.m */; };
+		D95FDE261D91ACE00003B4E1 /* FBNativeAdViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FDE251D91ACE00003B4E1 /* FBNativeAdViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,18 +29,11 @@
 		B3E7B5881CC2AC0600A0062D /* RNFacebookNativeAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFacebookNativeAds.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNFacebookNativeAds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNFacebookNativeAds.m; sourceTree = "<group>"; };
 		D95FDDFA1D9190180003B4E1 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = ../Example/ios/FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		D95FDE231D91ACB60003B4E1 /* RCTFBNativeAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTFBNativeAdView.m; sourceTree = "<group>"; };
+		D95FDE251D91ACE00003B4E1 /* FBNativeAdViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBNativeAdViewManager.m; sourceTree = "<group>"; };
+		D95FDE271D91ACEA0003B4E1 /* FBNativeAdViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBNativeAdViewManager.h; sourceTree = "<group>"; };
+		D95FDE281D91ACF60003B4E1 /* RCTFBNativeAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTFBNativeAdView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		58B511D81A9E6C8500147676 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D95FDDFB1D9190180003B4E1 /* FBAudienceNetwork.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		134814211AA4EA7D00B7C361 /* Products */ = {
@@ -53,6 +47,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				D95FDE281D91ACF60003B4E1 /* RCTFBNativeAdView.h */,
+				D95FDE231D91ACB60003B4E1 /* RCTFBNativeAdView.m */,
+				D95FDE271D91ACEA0003B4E1 /* FBNativeAdViewManager.h */,
+				D95FDE251D91ACE00003B4E1 /* FBNativeAdViewManager.m */,
 				B3E7B5881CC2AC0600A0062D /* RNFacebookNativeAds.h */,
 				B3E7B5891CC2AC0600A0062D /* RNFacebookNativeAds.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -76,7 +74,6 @@
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNFacebookNativeAds" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
-				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
 			);
 			buildRules = (
@@ -124,7 +121,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95FDE241D91ACB60003B4E1 /* RCTFBNativeAdView.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNFacebookNativeAds.m in Sources */,
+				D95FDE261D91ACE00003B4E1 /* FBNativeAdViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +210,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"../../../ios/**",
 					"../../ios/**",
+					"../Example/ios/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -233,6 +233,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"../../../ios/**",
 					"../../ios/**",
+					"../Example/ios/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
