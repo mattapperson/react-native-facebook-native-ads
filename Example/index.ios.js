@@ -32,7 +32,10 @@ class ExampleNativeAd extends Component {
         </Text>
 
         <NativeAdView
-            placementID="YOUR_PLACEMENT_ID_HERE"
+            placementID="454403614571710_1253160571362673"
+            onFail={(err) => {
+                console.log(err)
+            }}
             style={{
                 backgroundColor: 'blue',
                 width: 300,

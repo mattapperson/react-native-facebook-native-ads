@@ -10,6 +10,7 @@
 #import "RCTFBNativeAdView.h"
 #import "RCTLog.h"
 #import "RCTBridge.h"
+#import <RCTUtils.h>
 
 @implementation RCTFBNativeAdView {
     FBNativeAd *_nativeAd;
@@ -43,36 +44,35 @@
 {
     
     if(!_attributes) {
-        NSLog(@"%@", attributes);
         _attributes = @{
-              @"backgroundColor": [RCTConvert  UIColor: attributes[@"backgroundColor"]],
-              @"titleColor": [RCTConvert  UIColor: attributes[@"titleColor"]],
-              @"titleFont": [UIFont fontWithName:@"Helvetica" size:17.0], //[RCTConvert UIFont:attributes[@"titleFont"]],
-              @"descriptionColor": [RCTConvert  UIColor: attributes[@"descriptionColor"]],
-              @"descriptionFont": [UIFont fontWithName:@"Helvetica" size:17.0],//[RCTConvert UIFont: attributes[@"descriptionFont"]],
-              @"buttonColor": [RCTConvert  UIColor: attributes[@"buttonColor"]],
-              @"buttonTitleColor": [RCTConvert  UIColor: attributes[@"buttonTitleColor"]],
-              @"buttonTitleFont": [UIFont fontWithName:@"Helvetica" size:17.0], //[RCTConvert UIFont: attributes[@"buttonTitleFont"]],
-              @"buttonBorderColor": [RCTConvert  UIColor: attributes[@"buttonBorderColor"]],
-              @"autoplayEnabled": attributes[@"autoplayEnabled"],
-        };
+                        @"backgroundColor": [RCTConvert  UIColor: attributes[@"backgroundColor"]],
+                        @"titleColor": [RCTConvert  UIColor: attributes[@"titleColor"]],
+                        @"titleFont": [UIFont fontWithName:@"Helvetica" size:17.0], //[RCTConvert UIFont:attributes[@"titleFont"]],
+                        @"descriptionColor": [RCTConvert  UIColor: attributes[@"descriptionColor"]],
+                        @"descriptionFont": [UIFont fontWithName:@"Helvetica" size:17.0],//[RCTConvert UIFont: attributes[@"descriptionFont"]],
+                        @"buttonColor": [RCTConvert  UIColor: attributes[@"buttonColor"]],
+                        @"buttonTitleColor": [RCTConvert  UIColor: attributes[@"buttonTitleColor"]],
+                        @"buttonTitleFont": [UIFont fontWithName:@"Helvetica" size:17.0], //[RCTConvert UIFont: attributes[@"buttonTitleFont"]],
+                        @"buttonBorderColor": [RCTConvert  UIColor: attributes[@"buttonBorderColor"]],
+                        @"autoplayEnabled": attributes[@"autoplayEnabled"],
+                        };
     } else if(![_attributes isEqualToDictionary: attributes]){
         NSLog(@"You cant re-set a placementID");
     }
-
+    
 }
 
 
 - (void)nativeAdDidLoad:(FBNativeAd *)nativeAd
 {
     FBNativeAdViewAttributes *attributes = [[FBNativeAdViewAttributes alloc] initWithDictionary: _attributes];
-    NSLog(@"Setting FBNativeAdViewAttributes: ", _attributes);
+    RCTLogInfo(@"Setting FBNativeAdViewAttributes: %@", _attributes);
     
     FBNativeAdView *adView = [FBNativeAdView nativeAdViewWithNativeAd:nativeAd
                                                              withType:FBNativeAdViewTypeGenericHeight300 withAttributes:attributes];
     
     [self addSubview:adView];
-
+    
     RCTLogInfo(@"Facebook Native Ad loaded! => %@", _attributes);
     
     CGSize size = self.bounds.size;
@@ -84,23 +84,41 @@
 
 - (void)nativeAdWillLogImpression:(FBNativeAd *)nativeAd
 {
-    RCTLogInfo(@"Native ad was impressive :)");
+    if(!self.onView) return;
     
+    self.onView(@{
+                  @"placementID": nativeAd.placementID
+                  });
 }
 
 - (void)nativeAdDidClick:(FBNativeAd *)nativeAd
 {
-    RCTLogInfo(@"Native ad was clicked");
+    if(!self.onDidClick) return;
+    
+    self.onDidClick(@{
+                      @"placementID": nativeAd.placementID
+                      });
 }
 
 - (void)nativeAdDidFinishHandlingClick:(FBNativeAd *)nativeAd
 {
-    RCTLogInfo(@"Finished with ad");
+    if(!self.onLoad) return;
+    
+    self.onLoad(@{
+                  @"placementID": nativeAd.placementID
+                  });
 }
 
 -(void)nativeAd:	(FBNativeAd *)nativeAd didFailWithError:	(NSError *)error
 {
-    RCTLogError(@"%@", error);
+    RCTLogInfo(@"Facebook Native Ad error => %@", error);
+    
+    if(!self.onFail) return;
+    
+    self.onFail(@{
+                  @"placementID": nativeAd.placementID,
+                  @"error": error.localizedDescription
+                  });
 }
 
 - (void)insertReactSubview:(UIView *)view atIndex:(NSInteger)atIndex

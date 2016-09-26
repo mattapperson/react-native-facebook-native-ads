@@ -16,8 +16,10 @@ RCT_EXPORT_MODULE()
 }
 
 RCT_EXPORT_VIEW_PROPERTY(placementID, NSString)
-
-
+RCT_EXPORT_VIEW_PROPERTY(onFail, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onDidClick, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onLoad, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onView, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(nativeAdViewStyle, NSDictionary)
 
 
